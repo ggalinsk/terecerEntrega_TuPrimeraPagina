@@ -1,0 +1,14 @@
+{% extends 'EscuelaDeSurf/base.html' %}
+{% block title %}Clases{% endblock %}
+{% block content %}
+  <h2>Listado de Clases</h2>
+  <ul class="list-group">
+    {% for clase in clases %}
+      <li class="list-group-item">
+        <strong>{{ clase.nombre }}</strong> con {{ clase.instructor }} - {{ clase.horario }} ({{ clase.duracion }} min)
+      </li>
+    {% empty %}
+      <li class="list-group-item">No hay clases disponibles.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

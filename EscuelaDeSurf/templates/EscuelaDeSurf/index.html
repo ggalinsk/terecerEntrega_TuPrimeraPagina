@@ -1,0 +1,31 @@
+{% extends 'EscuelaDeSurf/base.html' %}
+{% load static %}
+{% block title %}Inicio - Escuela de Surf{% endblock %}
+
+{% block content %}
+  <!-- Hero -->
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5 text-center">
+      <h1 class="display-4 fw-bold text-primary">Bienvenido a la Escuela de Surf</h1>
+      <p class="fs-5">Descubre nuestros planes de membresía, clases y merchandising.</p>
+      <img src="{% static 'img/hero-surf.jpg' %}" alt="Surf" class="img-fluid rounded" style="max-height: 400px;">
+    </div>
+  </div>
+  <div>
+    <form method="GET" action="{% url 'buscar_clase' %}">
+      <input type="text" name="query" placeholder="Buscar clase de surf...">
+      <button type="submit">Buscar</button>
+    </form>
+    {% if clases_buscadas %}
+    <h3>Resultados de la búsqueda:</h3>
+    <ul>
+        {% for clase in clases_buscadas %}
+            <li>{{ clase.titulo }} - Instructor: {{ clase.instructor }} - ${{ clase.precio }}</li>
+        {% endfor %}
+    </ul>
+    {% elif request.GET.query %}
+        <p>No se encontraron clases con el nombre "{{ request.GET.query }}"</p>
+    {% endif %}
+  </div>
+{% endblock %}
+

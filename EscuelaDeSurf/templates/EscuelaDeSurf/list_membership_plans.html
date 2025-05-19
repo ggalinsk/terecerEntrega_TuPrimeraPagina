@@ -1,0 +1,14 @@
+{% extends 'EscuelaDeSurf/base.html' %}
+{% block title %}Planes{% endblock %}
+{% block content %}
+  <h2>Planes de Membresía</h2>
+  <ul class="list-group">
+    {% for plan in planes %}
+      <li class="list-group-item">
+        <strong>{{ plan.nombre }}</strong>: {{ plan.descripcion }} - ${{ plan.precio }}
+      </li>
+    {% empty %}
+      <li class="list-group-item">No hay planes disponibles.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
